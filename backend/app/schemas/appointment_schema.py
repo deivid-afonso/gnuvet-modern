@@ -1,3 +1,7 @@
+"""
+Schemas pydantic das consultas
+"""
+
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -5,20 +9,5 @@ from datetime import datetime
 class AppointmentCreate(BaseModel):
 
     pet_id: int
-
-    veterinarian_id: int
-
-    date: datetime
-
-    notes: str | None = None
-
-
-class AppointmentResponse(BaseModel):
-
-    id: int
-
-    pet_id: int
-
-    veterinarian_id: int
-
+    user_id: int
     date: datetime

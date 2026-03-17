@@ -1,5 +1,11 @@
-from sqlalchemy import Column, Integer, Float, ForeignKey
+"""
+Pagamentos realizados na clínica
+"""
+
+from sqlalchemy import Column, Integer, Float, String, ForeignKey
+from sqlalchemy.orm import relationship
 from app.database.base import Base
+
 
 class Payment(Base):
 
@@ -7,8 +13,10 @@ class Payment(Base):
 
     id = Column(Integer, primary_key=True)
 
+    appointment_id = Column(Integer, ForeignKey("appointments.id"))
+
     amount = Column(Float)
 
-    client_id = Column(Integer, ForeignKey("clients.id"))
+    method = Column(String)
 
-    product_id = Column(Integer, ForeignKey("products.id"))
+    appointment = relationship("Appointment")

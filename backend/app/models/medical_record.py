@@ -1,5 +1,12 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+"""
+Prontuário veterinário do pet
+"""
+
+from sqlalchemy import Column, Integer, ForeignKey, Text, DateTime
+from sqlalchemy.orm import relationship
+from datetime import datetime
 from app.database.base import Base
+
 
 class MedicalRecord(Base):
 
@@ -9,8 +16,8 @@ class MedicalRecord(Base):
 
     pet_id = Column(Integer, ForeignKey("pets.id"))
 
-    diagnosis = Column(String)
+    description = Column(Text)
 
-    treatment = Column(String)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
-    notes = Column(String)
+    pet = relationship("Pet")
